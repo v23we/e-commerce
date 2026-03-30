@@ -2,7 +2,7 @@ export type NavItem = {
   id: string;
   label: string;
   icon: "home" | "spark" | "grid" | "photo" | "layout" | "history" | "settings";
-  active?: boolean;
+  href?: string;
 };
 
 export type FilterTag = {
@@ -31,6 +31,7 @@ export type TemplateCategory = {
   count: string;
   art: CardArt;
   palette: [string, string, string];
+  href?: string;
 };
 
 export type TemplateCard = {
@@ -61,9 +62,9 @@ export type RecentCard = {
 };
 
 export const sidebarItems: NavItem[] = [
-  { id: "home", label: "Home", icon: "home" },
-  { id: "generate", label: "Generate", icon: "spark" },
-  { id: "templates", label: "Templates", icon: "grid", active: true },
+  { id: "home", label: "Home", icon: "home", href: "/studio" },
+  { id: "generate", label: "Generate", icon: "spark", href: "/studio/amazon-main-images" },
+  { id: "templates", label: "Templates", icon: "grid", href: "/studio" },
   { id: "product-shots", label: "Product Shots", icon: "photo" },
   { id: "aplus", label: "A+ Content", icon: "layout" },
   { id: "history", label: "History", icon: "history" },
@@ -84,6 +85,7 @@ export const templateCategories: TemplateCategory[] = [
     count: "28 ready layouts",
     art: "hero",
     palette: ["#d8e2f0", "#7487a2", "#252b36"],
+    href: "/studio/amazon-main-images",
   },
   {
     title: "A+ Detail Modules",

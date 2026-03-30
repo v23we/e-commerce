@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import type { NavItem } from "../../data/studio";
 import {
   GridIcon,
@@ -24,6 +25,8 @@ const iconMap = {
 };
 
 export function Sidebar({ items }: SidebarProps) {
+  const location = useLocation();
+
   return (
     <aside className="studio-sidebar">
       <div className="sidebar-brand">
@@ -35,12 +38,34 @@ export function Sidebar({ items }: SidebarProps) {
       <nav className="sidebar-nav" aria-label="Studio navigation">
         {items.map((item) => {
           const Icon = iconMap[item.icon];
+          const isActive =
+            item.id === "generate"
+              ? location.pathname.startsWith("/studio/amazon-main-images")
+              : item.id === "home"
+                ? location.pathname === "/studio"
+                : false;
+
+          const className = isActive ? "sidebar-link active" : "sidebar-link";
+
+          if (item.href) {
+            return (
+              <Link
+                key={item.id}
+                to={item.href}
+                state={item.href === location.pathname ? undefined : { from: location.pathname }}
+                className={className}
+              >
+                <Icon />
+                <span>{item.label}</span>
+              </Link>
+            );
+          }
 
           return (
             <button
               key={item.id}
               type="button"
-              className={item.active ? "sidebar-link active" : "sidebar-link"}
+              className={`${className} is-disabled`}
             >
               <Icon />
               <span>{item.label}</span>

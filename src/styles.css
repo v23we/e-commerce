@@ -50,12 +50,21 @@ textarea {
   font: inherit;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 button {
   border: 0;
   padding: 0;
   background: transparent;
   color: inherit;
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 button:focus-visible {
@@ -179,6 +188,11 @@ button:focus-visible {
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-link.is-disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .studio-main {
@@ -619,6 +633,359 @@ button:focus-visible {
   height: 84px;
 }
 
+.card-link-shell {
+  display: block;
+}
+
+.tool-page {
+  display: grid;
+  gap: 0;
+}
+
+.tool-page-header {
+  display: grid;
+  gap: 12px;
+  padding: 6px 0 0;
+}
+
+.tool-page-header h1,
+.tool-panel-heading h2,
+.tool-section-heading h2,
+.preset-card h3,
+.preview-card h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+}
+
+.tool-page-header h1 {
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+.tool-page-header p,
+.tool-panel-heading p,
+.tool-section-heading p,
+.upload-placeholder p,
+.preset-card p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.tool-section,
+.tool-workbench {
+  display: grid;
+  gap: 18px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.tool-section:first-of-type {
+  margin-top: 30px;
+}
+
+.tool-workbench + .tool-section,
+.tool-section + .tool-section {
+  margin-top: 34px;
+}
+
+.tool-section-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.tool-section-heading h2,
+.tool-panel-heading h2 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.preset-card,
+.preview-card,
+.tool-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(28, 32, 38, 0.98), rgba(18, 21, 26, 0.98));
+  box-shadow: var(--shadow-soft);
+}
+
+.preset-card,
+.preview-card {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.preset-card:hover,
+.preview-card:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(33, 38, 47, 0.98), rgba(21, 24, 30, 0.98));
+  box-shadow: var(--shadow-strong);
+}
+
+.preset-card.active {
+  outline: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.preview-card.is-selected {
+  outline: 1px solid rgba(134, 169, 255, 0.34);
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.preset-card-body,
+.preview-card-body {
+  padding: 14px 18px 18px;
+}
+
+.preset-card h3,
+.preview-card h3 {
+  font-size: 1rem;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+}
+
+.preset-card p {
+  margin-top: 6px;
+  font-size: 0.93rem;
+}
+
+.tool-workbench {
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  align-items: start;
+}
+
+.tool-panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.tool-panel-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.upload-placeholder {
+  display: grid;
+  gap: 8px;
+  min-height: 176px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    rgba(255, 255, 255, 0.02);
+  align-content: center;
+}
+
+.upload-placeholder span,
+.tool-field span,
+.tool-option-group > span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.upload-placeholder strong {
+  font-size: 1.15rem;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+}
+
+.tool-field {
+  display: grid;
+  gap: 10px;
+}
+
+.tool-field input,
+.tool-field textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  resize: none;
+}
+
+.tool-field input:focus-visible,
+.tool-field textarea:focus-visible {
+  outline: 2px solid rgba(134, 169, 255, 0.68);
+  outline-offset: 0;
+}
+
+.tool-field textarea {
+  min-height: 112px;
+}
+
+.tool-option-group {
+  display: grid;
+  gap: 12px;
+}
+
+.tool-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tool-chip {
+  min-width: 112px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-soft);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.tool-chip strong {
+  font-size: 0.94rem;
+  line-height: 1.1;
+}
+
+.tool-chip span {
+  color: currentColor;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.tool-chip.active {
+  color: var(--text);
+  border-color: rgba(134, 169, 255, 0.32);
+  background: rgba(134, 169, 255, 0.1);
+}
+
+.tool-chip:hover {
+  transform: translateY(-1px);
+  color: var(--text);
+}
+
+.tool-generate {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.tool-generate:disabled {
+  opacity: 0.72;
+  box-shadow: none;
+}
+
+.preview-panel {
+  gap: 16px;
+}
+
+.preview-hero {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.preview-hero.is-loading {
+  opacity: 0.86;
+}
+
+.preview-grid,
+.recent-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.preview-empty {
+  min-height: 214px;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  gap: 8px;
+  align-content: center;
+}
+
+.preview-empty strong {
+  font-size: 1.05rem;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+}
+
+.preview-empty p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+.preview-empty.loading {
+  border-style: dashed;
+}
+
+.preview-empty.error {
+  border-color: rgba(255, 149, 149, 0.18);
+  background: rgba(133, 35, 35, 0.08);
+}
+
+.preview-retry {
+  width: fit-content;
+  min-height: 40px;
+  margin-top: 6px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+@media (max-width: 1280px) {
+  .preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-workbench {
+    grid-template-columns: 360px minmax(0, 1fr);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -649,6 +1016,10 @@ button:focus-visible {
   .recent-card.featured {
     grid-column: span 2;
   }
+
+  .tool-workbench {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1080px) {
@@ -661,12 +1032,39 @@ button:focus-visible {
     min-height: auto;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 12px 14px;
+    display: grid;
+    gap: 12px;
   }
 
   .studio-main {
     padding-left: 18px;
+  }
+
+  .sidebar-brand {
+    padding: 0;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar-link {
+    min-height: 44px;
+    padding: 0 12px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -696,6 +1094,16 @@ button:focus-visible {
   .platform-card {
     grid-template-columns: 1fr;
   }
+
+  .preset-grid,
+  .preview-grid,
+  .recent-tool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-panel {
+    padding: 18px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -703,12 +1111,23 @@ button:focus-visible {
   .category-card,
   .template-card,
   .platform-card,
-  .recent-card {
+  .recent-card,
+  .preset-card,
+  .preview-card,
+  .tool-panel {
     border-radius: 22px;
   }
 
   .template-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tool-page-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .tool-chip {
+    width: 100%;
   }
 
 }

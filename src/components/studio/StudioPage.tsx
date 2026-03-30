@@ -7,16 +7,13 @@ import {
 } from "../../data/studio";
 import { PlatformSection } from "./PlatformSection";
 import { RecentSection } from "./RecentSection";
-import { Sidebar } from "./Sidebar";
+import { StudioShell } from "./StudioShell";
 import { TemplateCategorySection } from "./TemplateCategorySection";
 import { TemplateGridSection } from "./TemplateGridSection";
 
 export function StudioPage() {
   return (
-    <div className="studio-app-shell">
-      <Sidebar items={sidebarItems} />
-
-      <main className="studio-main">
+    <StudioShell items={sidebarItems}>
         <TemplateCategorySection categories={templateCategories} />
         <TemplateGridSection
           title="Popular templates for fast-moving storefront work."
@@ -25,7 +22,6 @@ export function StudioPage() {
         />
         <PlatformSection cards={platformCards} />
         <RecentSection cards={recentCards} />
-      </main>
-    </div>
+    </StudioShell>
   );
 }
