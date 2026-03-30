@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import type { TemplateCategory } from "../../data/studio";
 import { TemplateVisual } from "./TemplateVisual";
 
@@ -6,6 +7,8 @@ type TemplateCategorySectionProps = {
 };
 
 export function TemplateCategorySection({ categories }: TemplateCategorySectionProps) {
+  const location = useLocation();
+
   return (
     <section className="studio-section">
       <div className="section-heading">
@@ -14,12 +17,26 @@ export function TemplateCategorySection({ categories }: TemplateCategorySectionP
 
       <div className="category-grid">
         {categories.map((category) => (
-          <article key={category.title} className="category-card">
-            <TemplateVisual art={category.art} palette={category.palette} />
-            <div className="category-card-body">
-              <h3>{category.title}</h3>
-            </div>
-          </article>
+          category.href ? (
+            <Link
+              key={category.title}
+              to={category.href}
+              state={{ from: location.pathname }}
+              className="category-card card-link-shell"
+            >
+              <TemplateVisual art={category.art} palette={category.palette} />
+              <div className="category-card-body">
+                <h3>{category.title}</h3>
+              </div>
+            </Link>
+          ) : (
+            <article key={category.title} className="category-card">
+              <TemplateVisual art={category.art} palette={category.palette} />
+              <div className="category-card-body">
+                <h3>{category.title}</h3>
+              </div>
+            </article>
+          )
         ))}
       </div>
     </section>
