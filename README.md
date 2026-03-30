@@ -19,6 +19,12 @@ npm run dev
 npm run build
 ```
 
+测试：
+
+```bash
+npm run test
+```
+
 ## 主要功能
 
 - 简洁侧边栏导航
@@ -27,6 +33,7 @@ npm run build
 - 平台专区（Amazon / TikTok Shop / Shopify / Etsy）
 - 最近生成 / 案例展示
 - `Amazon Main Images` 工具页：预设选择、输入面板、预览面板、最近结果
+- 已接入最小 Vitest + Testing Library 测试，覆盖主图页入口与核心交互状态
 
 ## 核心文件结构
 
@@ -42,7 +49,10 @@ npm run build
 - `src/components/studio/PlatformSection.tsx`：平台专区
 - `src/components/studio/RecentSection.tsx`：最近生成 / 案例区
 - `src/components/studio/TemplateVisual.tsx`：统一 mock 预览图视觉组件
+- `src/components/studio/AmazonMainImagesPage.test.tsx`：Amazon 主图页核心交互测试
+- `src/test/setup.ts`：Vitest 测试初始化
 - `src/styles.css`：全局视觉系统、布局、卡片和响应式样式
+- `TESTING.md`：测试运行方式和约定
 
 ## 说明
 

@@ -8,6 +8,7 @@
 - 已新增最小可运行的 `Amazon Main Images` 工具页，复用现有 studio 壳层和导航
 - `Amazon Main Images` 工具页已补齐最小状态流：`idle / loading / success / empty / error`
 - 页面使用统一 mock 数据和占位预览图，不接真实上传、生成 API
+- 已接入最小 Vitest + Testing Library 测试，当前覆盖主图页入口、空态和生成结果交互
 - 已完成组件拆分，避免所有结构继续堆在单一页面文件中
 
 ## 关键设计决策

@@ -25,6 +25,8 @@
 - 重写 `src/styles.css`，改为更成熟的深灰高对比视觉系统，减少 glow 和渐变感
 - 收紧首屏信息架构，减少 CTA 和首屏决策点
 - 将术语文案改为更直白的电商模板语言
+- 为 `Amazon Main Images` 页补充 Vitest + Testing Library 测试，覆盖入口、空态和生成结果交互
+- 修复窄屏下 studio sidebar 过高、压缩第一屏内容的问题
 - 更新 README 和 HANDOFF，移除旧版暖白工作台的过期描述
 
 ## 2026-03-29
