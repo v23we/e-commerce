@@ -7,6 +7,8 @@
 - 当前页面优先展示模板分类、热门模板、平台专区和最近生成案例
 - 已新增最小可运行的 `Amazon Main Images` 工具页，复用现有 studio 壳层和导航
 - `Amazon Main Images` 工具页已补齐最小状态流：`idle / loading / success / empty / error`
+- `Amazon Main Images` 上传区已支持空态、多图本地预览、加图、删图和自动换行
+- 上传原始文件 state 已上提到页面层，上传组件只负责本地预览和交互，后续更容易接真实上传 API
 - 页面使用统一 mock 数据和占位预览图，不接真实上传、生成 API
 - 已接入最小 Vitest + Testing Library 测试，当前覆盖主图页入口、空态和生成结果交互
 - 已完成组件拆分，避免所有结构继续堆在单一页面文件中

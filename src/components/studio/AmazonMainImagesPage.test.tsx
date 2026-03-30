@@ -84,4 +84,55 @@ describe("AmazonMainImagesPage", () => {
       "false",
     );
   });
+
+  it("supports empty, append, remove, and reset states in the upload area", async () => {
+    const user = userEvent.setup();
+    const createObjectURLSpy = vi
+      .spyOn(URL, "createObjectURL")
+      .mockImplementation((file) => `blob:${(file as File).name}`);
+    const revokeObjectURLSpy = vi
+      .spyOn(URL, "revokeObjectURL")
+      .mockImplementation(() => undefined);
+
+    render(
+      <MemoryRouter>
+        <AmazonMainImagesPage />
+      </MemoryRouter>,
+    );
+
+    expect(
+      screen.getByText("多图上传建议仅保留必要角度或 SKU 图，", { exact: false }),
+    ).toBeInTheDocument();
+
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    const firstFile = new File(["front"], "front-view.png", { type: "image/png" });
+    const secondFile = new File(["side"], "side-view.png", { type: "image/png" });
+
+    await user.upload(fileInput, firstFile);
+
+    expect(screen.getByRole("img", { name: "front-view.png" })).toBeInTheDocument();
+    expect(screen.getByText("Add more")).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: "side-view.png" })).not.toBeInTheDocument();
+
+    await user.upload(fileInput, secondFile);
+
+    expect(screen.getByRole("img", { name: "side-view.png" })).toBeInTheDocument();
+    expect(createObjectURLSpy).toHaveBeenCalledTimes(2);
+
+    await user.click(screen.getByRole("button", { name: "Remove front-view.png" }));
+
+    expect(screen.queryByRole("img", { name: "front-view.png" })).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "side-view.png" })).toBeInTheDocument();
+    expect(revokeObjectURLSpy).toHaveBeenCalledWith("blob:front-view.png");
+
+    await user.click(screen.getByRole("button", { name: "Remove side-view.png" }));
+
+    expect(screen.queryByRole("img", { name: "side-view.png" })).not.toBeInTheDocument();
+    expect(
+      screen.getByText("多图上传建议仅保留必要角度或 SKU 图，", { exact: false }),
+    ).toBeInTheDocument();
+
+    createObjectURLSpy.mockRestore();
+    revokeObjectURLSpy.mockRestore();
+  });
 });

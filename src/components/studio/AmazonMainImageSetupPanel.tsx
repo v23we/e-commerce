@@ -1,7 +1,9 @@
 import type { MainImageOption } from "../../data/amazonMainImages";
+import { AmazonMainImageUploadField } from "./AmazonMainImageUploadField";
 import { ArrowUpRightIcon } from "./icons";
 
 type AmazonMainImageSetupPanelProps = {
+  uploadedFiles: File[];
   productTitle: string;
   heroMessage: string;
   backgroundOptions: MainImageOption[];
@@ -9,6 +11,7 @@ type AmazonMainImageSetupPanelProps = {
   selectedBackgroundId: string;
   selectedRatioId: string;
   isGenerating: boolean;
+  onUploadedFilesChange: (files: File[]) => void;
   onProductTitleChange: (value: string) => void;
   onHeroMessageChange: (value: string) => void;
   onBackgroundChange: (optionId: string) => void;
@@ -17,6 +20,7 @@ type AmazonMainImageSetupPanelProps = {
 };
 
 export function AmazonMainImageSetupPanel({
+  uploadedFiles,
   productTitle,
   heroMessage,
   backgroundOptions,
@@ -24,6 +28,7 @@ export function AmazonMainImageSetupPanel({
   selectedBackgroundId,
   selectedRatioId,
   isGenerating,
+  onUploadedFilesChange,
   onProductTitleChange,
   onHeroMessageChange,
   onBackgroundChange,
@@ -37,11 +42,7 @@ export function AmazonMainImageSetupPanel({
         <p>静态 demo，不接真实上传，只保留完整工作台感。</p>
       </div>
 
-      <div className="upload-placeholder">
-        <span>Product image</span>
-        <strong>Drop product photo here</strong>
-        <p>建议一张干净、正视角商品图，用于生成 Amazon 主图方向。</p>
-      </div>
+      <AmazonMainImageUploadField files={uploadedFiles} onFilesChange={onUploadedFilesChange} />
 
       <label className="tool-field">
         <span>Product title</span>
