@@ -809,7 +809,18 @@ button:focus-visible {
   align-content: center;
 }
 
+.upload-field {
+  display: grid;
+  gap: 10px;
+}
+
+.upload-field-header {
+  display: grid;
+  gap: 6px;
+}
+
 .upload-placeholder span,
+.upload-field-header span,
 .tool-field span,
 .tool-option-group > span {
   color: var(--text-muted);
@@ -823,6 +834,125 @@ button:focus-visible {
   font-size: 1.15rem;
   line-height: 1.16;
   letter-spacing: -0.03em;
+}
+
+.upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.upload-empty-state {
+  cursor: pointer;
+  justify-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.upload-empty-state svg {
+  width: 34px;
+  height: 34px;
+  color: rgba(210, 215, 224, 0.74);
+}
+
+.upload-empty-state p {
+  margin: 0;
+  color: #eef2f6;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.upload-gallery-shell {
+  min-height: 176px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    rgba(255, 255, 255, 0.02);
+}
+
+.upload-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
+  gap: 14px;
+}
+
+.upload-image-card,
+.upload-add-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.upload-image-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.upload-image-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.upload-image-index {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 7px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 11, 14, 0.72);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.upload-remove-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 11, 14, 0.72);
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.upload-add-card {
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.02);
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-add-plus {
+  color: rgba(214, 219, 227, 0.82);
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.upload-add-copy {
+  color: var(--text-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
 .tool-field {

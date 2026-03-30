@@ -28,6 +28,7 @@ export function AmazonMainImagesPage() {
   const [selectedPresetId, setSelectedPresetId] = useState(mainImagePresets[0]?.id ?? "");
   const [selectedBackgroundId, setSelectedBackgroundId] = useState(backgroundOptions[0]?.id ?? "");
   const [selectedRatioId, setSelectedRatioId] = useState(ratioOptions[0]?.id ?? "");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [productTitle, setProductTitle] = useState(INITIAL_TITLE);
   const [heroMessage, setHeroMessage] = useState(INITIAL_MESSAGE);
   const [status, setStatus] = useState<GenerationStatus>("idle");
@@ -169,6 +170,7 @@ export function AmazonMainImagesPage() {
 
         <section className="tool-workbench">
           <AmazonMainImageSetupPanel
+            uploadedFiles={uploadedFiles}
             productTitle={productTitle}
             heroMessage={heroMessage}
             backgroundOptions={backgroundOptions}
@@ -176,6 +178,7 @@ export function AmazonMainImagesPage() {
             selectedBackgroundId={selectedBackgroundId}
             selectedRatioId={selectedRatioId}
             isGenerating={status === "loading"}
+            onUploadedFilesChange={setUploadedFiles}
             onProductTitleChange={handleProductTitleChange}
             onHeroMessageChange={handleHeroMessageChange}
             onBackgroundChange={handleBackgroundChange}
